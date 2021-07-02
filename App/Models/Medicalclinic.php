@@ -9,6 +9,7 @@
         private $tel;
         private $address;
         private $cnpj;
+        private $is_active;
 
         public function __get($attribute) {
             return $this->$attribute;
@@ -30,7 +31,7 @@
         }
 
         public function verifyName() {
-            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE name = :name");
+            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE name = :name AND is_active = true");
             $sql->bindValue(':name', $this->__get('name'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
@@ -38,7 +39,7 @@
         }
 
         public function selectId() {
-            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE id_medclinic = :id_medclinic");
+            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE id_medclinic = :id_medclinic AND is_active = true");
             $sql->bindValue(':id_medclinic', $this->__get('id_medclinic'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
@@ -46,7 +47,7 @@
         }
 
         public function selectAll() {
-            $sql = $this->db->prepare("SELECT * FROM medical_clinics");
+            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE is_active = true");
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
             return $sql->fetchAll(\PDO::FETCH_ASSOC);//retorna os dados

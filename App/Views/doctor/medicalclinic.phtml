@@ -46,7 +46,10 @@
             <td><?= $clinic['name'] ?></td>
             <td><?= $clinic['cnpj'] ?></td>
             <td>
-                <a href="/doctor/editclinic/<?= $clinic['id_medclinic'] ?>">Editar</a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="/doctor/editclinic/<?= $clinic['id_medclinic'] ?>" class="btn btn-success">Editar</a>
+                    <a href="" class="btn btn-danger">Excluir</a>
+                </div>
             </td>
             </tr>
             <?php } ?>

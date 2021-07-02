@@ -9,6 +9,7 @@
         private $tel;
         private $password;
         private $is_super;
+        private $is_active;
         private $id_medclinic;
 
 
@@ -33,7 +34,7 @@
         }
 
         public function verifyEmail() {
-            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE email = :email");
+            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE email = :email AND is_active = true");
             $sql->bindValue(':email', $this->__get('email'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
@@ -41,7 +42,7 @@
         }
 
         public function selectId() {
-            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE id_secretary = :id_secretary");
+            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE id_secretary = :id_secretary AND is_active = true");
             $sql->bindValue(':id_secretary', $this->__get('id_secretary'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
@@ -49,7 +50,7 @@
         }
 
         public function selectAll() {
-            $sql = $this->db->prepare("SELECT * FROM secretaries");
+            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE is_active = true");
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
             return $sql->fetchAll(\PDO::FETCH_ASSOC);//retorna os dados

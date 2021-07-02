@@ -5,7 +5,7 @@ CREATE TABLE medical_clinics (
     tel VARCHAR(15) NOT NULL,
     address TEXT(255) NOT NULL,
     cnpj VARCHAR(14) NOT NULL,
-    is_active BOOLEAN DEFAULT false
+    is_active BOOLEAN DEFAULT true
 
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE secretaries (
     tel VARCHAR(15) NOT NULL,
     password VARCHAR(100) NOT NULL,
     is_super BOOLEAN DEFAULT false,
-    is_active BOOLEAN DEFAULT false,
+    is_active BOOLEAN DEFAULT true,
     id_medclinic int,
     foreign key (id_medclinic) references medical_clinics(id_medclinic)
 );
