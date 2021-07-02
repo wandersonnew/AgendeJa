@@ -1,0 +1,21 @@
+{
+    "name": "wanderson/agende-ja_miniframework",
+    "description": "Sistema de agendamento de consultas clinicas",
+    "authors": [
+        {
+            "name": "wanderson Duarte Alves",
+            "email": "wandersondrtlvs.new@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 7.0",
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+			"Src\\": "Src/"
+        }
+    }
+
+}

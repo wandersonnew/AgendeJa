@@ -1,0 +1,24 @@
+<div class="container">
+    <?php
+        session_start();
+
+        if(isset($_SESSION['email'])) {
+    ?>
+        <a href="/patient/logout">Sair</a>
+    <?php
+        } else {
+    ?>
+        <a href="/patient/login" class="btn btn-primary">Entrar</a>
+        <a href="/patient/register" class="btn btn-primary">Cadastrar-se</a>
+    <?php
+        }
+    ?>
+
+    <nav>
+        <div>
+            <a href="/">Início</a>
+        </div>
+    </nav>
+
+    <h1>Welcome to my site!</h1>
+</div>

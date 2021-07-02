@@ -1,0 +1,26 @@
+<div class="container">
+    <?php
+        if($_GET) {
+            if($_GET['registered'] == 'false') {
+                echo "Paciente já cadastrado";
+            }
+        }
+    ?>
+
+    <h1>Cadastrar-se</h1>
+
+    <form action="/patient/toregister" method="post">
+        <label for="">Nome</label>
+        <input type="text" name="name" required>
+        <label for="">Email</label>
+        <input type="email" name="email" required>
+        <label for="">Telefone</label>
+        <input type="tel" name="tel" required>
+        <label for="">Endereço</label>
+        <input type="text" name="address" required>
+        <label for="">Senha</label>
+        <input type="password" name="password" required>
+        <button type="submit">Cadastrar-se</button>
+        <a href="/patient/login">Entrar</a>
+    </form>
+</div>

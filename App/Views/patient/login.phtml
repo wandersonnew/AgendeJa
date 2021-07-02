@@ -1,0 +1,23 @@
+<?php
+    if($_GET) {
+        if(isset($_GET['registered']) == 'true') {
+            echo "Paciente cadastrado com sucesso!";
+        }
+
+        if(isset($_GET['login']) == 'false') {
+            echo "Verifique se o email e / ou a senha estão corretos!";
+        }
+    }
+?>
+
+<h1>Fazer login</h1>
+
+<form action="/patient/tologin" method="post">
+    <label for="">Email</label>
+    <input type="email" name="email" required>
+    <label for="">Senha</label>
+    <input type="password" name="password" required>
+    <button type="submit">Entrar</button>
+    <a href="/patient/register">Cadastrar-se</a>
+    <a href="/patient/recoverpass">Esqueci minha senha</a>
+</form>

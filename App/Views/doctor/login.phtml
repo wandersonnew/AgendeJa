@@ -1,0 +1,17 @@
+<?php
+    if($_GET) {
+        if(isset($_GET['login']) == 'false') {
+            echo "Verifique se o email e / ou a senha estão corretos!";
+        }
+    }
+?>
+
+<h1>Fazer login para doutor</h1>
+
+<form action="/doctor/tologin" method="post">
+    <label for="">Email</label>
+    <input type="email" name="email" required>
+    <label for="">Senha</label>
+    <input type="password" name="password" required>
+    <button type="submit">Entrar</button>
+</form>
