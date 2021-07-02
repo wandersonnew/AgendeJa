@@ -13,7 +13,7 @@
             $clinic->__set('tel', $_POST['tel']);
             $clinic->__set('address', $_POST['address']);
             $clinic->__set('cnpj', $_POST['cnpj']);
-            $result = $clinic->verifyName();
+            $result = $clinic->verify();
             if($result == NULL) {
                 $clinic->toregister();
                 header('Location: /doctor/clinic?registered=true');
@@ -48,6 +48,17 @@
                 header('Location: /doctor/clinic?update=true');
             } else {
                 header('Location:/doctor/editclinic/'.$_POST['id_medclinic'].'?update=erro');
+            }
+        }
+
+        public function delete($id) {
+            $clinic = Container::getModel('Medicalclinic');
+            $clinic->__set('id_medclinic', $id);
+            
+            $result = $clinic->delete();
+            
+            if($result != NULL) {
+                header('Location: /doctor/clinic');
             }
         }
 

@@ -1,14 +1,14 @@
 <div class="container">
+
+    <h1>Cadastrar-se</h1>
+
     <?php
-        if($_GET) {
-            if($_GET['registered'] == 'false') {
+        if(isset($_GET)) {
+            if(isset($_GET['registered']) && $_GET['registered'] == 'false') {
                 echo "Paciente já cadastrado";
             }
         }
     ?>
-
-    <h1>Cadastrar-se</h1>
-
     <form action="/patient/toregister" method="post">
         <label for="">Nome</label>
         <input type="text" name="name" required>

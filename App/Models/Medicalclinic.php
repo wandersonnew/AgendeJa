@@ -30,9 +30,10 @@
             return $this;
         }
 
-        public function verifyName() {
-            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE name = :name AND is_active = true");
-            $sql->bindValue(':name', $this->__get('name'));
+        public function verify() {
+            $sql = $this->db->prepare("SELECT * FROM medical_clinics WHERE email = :email OR cnpj = :cnpj");
+            $sql->bindValue(':email', $this->__get('email'));
+            $sql->bindValue(':cnpj', $this->__get('cnpj'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
             return $sql->fetchAll(\PDO::FETCH_ASSOC);//retorna os dados
@@ -61,6 +62,14 @@
             $sql->bindValue(4, $this->__get('address'));
             $sql->bindValue(5, $this->__get('cnpj'));
             $sql->bindValue(6, $this->__get('id_medclinic'));
+            $sql->execute();
+            return $this;
+
+        }
+
+        public function delete() {
+            $sql = $this->db->prepare("UPDATE medical_clinics SET is_active = false WHERE id_medclinic = ?");
+            $sql->bindValue(1, $this->__get('id_medclinic'));
             $sql->execute();
             return $this;
 

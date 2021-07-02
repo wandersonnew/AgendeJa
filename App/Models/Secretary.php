@@ -34,7 +34,7 @@
         }
 
         public function verifyEmail() {
-            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE email = :email AND is_active = true");
+            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE email = :email");
             $sql->bindValue(':email', $this->__get('email'));
             $sql->execute();
             //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
@@ -69,6 +69,15 @@
             return $this;
 
         }
+
+        public function delete() {
+            $sql = $this->db->prepare("UPDATE secretaries SET is_active = false WHERE id_secretary = ?");
+            $sql->bindValue(1, $this->__get('id_secretary'));
+            $sql->execute();
+            return $this;
+        }
+
+
     }
     
 ?>

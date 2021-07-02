@@ -80,6 +80,11 @@
             $secretary->update();
         }
 
+        public function deleteSecretary($id) {
+            $secretary = new SecretaryController();
+            $secretary->delete($id);
+        }
+
 
         //Gerenciamente de clínicas
         public function clinic() {
@@ -106,7 +111,10 @@
             $clinic->update();
         }
 
-        
+        public function deleteClinic($id) {
+            $clinic = new MedicalclinicController();
+            $clinic->delete($id);
+        }
 
     }
 

@@ -1,17 +1,27 @@
 <div class="container">
     <button type="button" onclick="javascript:history.go(-1)">Voltar</button>
-    <?php
-        if(isset($_GET)) {
-            if(isset($_GET['registered']) == 'true') {
-                echo "Cadastro feito com sucesso!";
-            } else if(isset($_GET['registered']) == 'false') {
-                echo "Falha ao cadastrar";
-            }
-        }
-    ?>
 
     <h1>Editar dados da clínica</h1>
 
+    <?php
+        if(isset($_GET)) {
+            if(isset($_GET['registered']) && $_GET['registered'] == 'true') {
+    ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Cadastro feito com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+    <?php
+            } else if(isset($_GET['registered']) && $_GET['registered'] == 'false') {
+    ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Falha ao cadastrar!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+    <?php
+            }
+        }
+    ?>
     <form action="/doctor/update/clinic" method="post">
         <input type="hidden" name="id_medclinic" value="<?= $this->view->clinic[0]['id_medclinic'] ?>">
         <label for="">Nome</label>

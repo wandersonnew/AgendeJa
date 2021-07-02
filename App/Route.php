@@ -98,6 +98,11 @@ class Route extends Bootstrap {
 			'controller' => 'DoctorController',
 			'action' => 'updateSecretary'
 		);
+		$routes['deletesecretarydoctor'] = array(
+			'route' => '/doctor/delete/secretary/:id',
+			'controller' => 'DoctorController',
+			'action' => 'deleteSecretary'
+		);
 		//Rotas gerenciamento de clínica
 		$routes['clinicdoctor'] = array(
 			'route' => '/doctor/clinic',
@@ -118,6 +123,11 @@ class Route extends Bootstrap {
 			'route' => '/doctor/update/clinic',
 			'controller' => 'DoctorController',
 			'action' => 'updateClinic'
+		);
+		$routes['deleteclinicdoctor'] = array(
+			'route' => '/doctor/delete/clinic/:id',
+			'controller' => 'DoctorController',
+			'action' => 'deleteClinic'
 		);
 		
 

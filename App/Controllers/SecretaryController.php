@@ -63,4 +63,14 @@
             }
         }
 
+        public function delete($id) {
+            $secretary = Container::getModel('Secretary');
+            $secretary->__set('id_secretary', $id);
+
+            $result = $secretary->delete();
+
+            if($result != NULL) {
+                header('Location: /doctor/secretary');
+            }
+        }
     }
