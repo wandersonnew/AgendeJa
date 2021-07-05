@@ -1,0 +1,21 @@
+<h1>Fazer login para secretaria</h1>
+
+<?php
+    if($_GET) {
+        if(isset($_GET['login']) && $_GET['login'] == 'false') {
+?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Verifique se o email e / ou a senha estão corretos!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+<?php
+        }
+    }
+?>
+<form action="/secretary/tologin" method="post">
+    <label for="">Email</label>
+    <input type="email" name="email" required>
+    <label for="">Senha</label>
+    <input type="password" name="password" required>
+    <button type="submit">Entrar</button>
+</form>

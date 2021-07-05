@@ -1,5 +1,5 @@
 <div class="container">
-    <button type="button" onclick="javascript:history.go(-1)">Voltar</button>
+    <button type="button" onclick="javascript:history.go(-1)" class="btn btn-secondary">Voltar</button>
 
     <h1>Editar dados da clínica</h1>
 
@@ -24,16 +24,26 @@
     ?>
     <form action="/doctor/update/clinic" method="post">
         <input type="hidden" name="id_medclinic" value="<?= $this->view->clinic[0]['id_medclinic'] ?>">
-        <label for="">Nome</label>
-        <input type="text" name="name" value="<?= $this->view->clinic[0]['name'] ?>" required>
-        <label for="">Email</label>
-        <input type="email" name="email" value="<?= $this->view->clinic[0]['email'] ?>" required>
-        <label for="">Telefone</label>
-        <input type="tel" name="tel" value="<?= $this->view->clinic[0]['tel'] ?>" required>
-        <label for="">Endereço</label>
-        <input type="tex" name="address" value="<?= $this->view->clinic[0]['address'] ?>" required>
-        <label for="">CNPJ</label>
-        <input type="text" name="cnpj" value="<?= $this->view->clinic[0]['cnpj'] ?>" required>
-        <button type="submit">Atualizar</button>
+        <div class="form-group">
+            <label for="">Nome</label>
+            <input type="text" name="name" class="form-control" value="<?= $this->view->clinic[0]['name'] ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="email" name="email" class="form-control" value="<?= $this->view->clinic[0]['email'] ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="">Telefone</label>
+            <input type="tel" name="tel" class="form-control" value="<?= $this->view->clinic[0]['tel'] ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="">Endereço</label>
+            <input type="tex" name="address" class="form-control" value="<?= $this->view->clinic[0]['address'] ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="">CNPJ</label>
+            <input type="text" name="cnpj" class="form-control" value="<?= $this->view->clinic[0]['cnpj'] ?>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
 </div>

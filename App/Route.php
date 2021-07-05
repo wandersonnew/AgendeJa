@@ -129,6 +129,28 @@ class Route extends Bootstrap {
 			'controller' => 'DoctorController',
 			'action' => 'deleteClinic'
 		);
+
+		//Rotas de secretárias
+		$routes['secretary'] = array(
+			'route' => '/secretary',
+			'controller' => 'SecretaryController',
+			'action' => 'home'
+		);
+		$routes['loginsecretary'] = array(
+			'route' => '/secretary/login',
+			'controller' => 'SecretaryController',
+			'action' => 'login'
+		);
+		$routes['tologinsecretary'] = array(
+			'route' => '/secretary/tologin',
+			'controller' => 'SecretaryController',
+			'action' => 'tologin'
+		);
+		$routes['tologoutsecretary'] = array(
+			'route' => '/secretary/logout',
+			'controller' => 'SecretaryController',
+			'action' => 'logout'
+		);
 		
 
 		$this->setRoutes($routes);

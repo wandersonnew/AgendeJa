@@ -41,6 +41,14 @@
             return $sql->fetchAll(\PDO::FETCH_ASSOC);//retorna os dados
         }
 
+        public function verifyEmailActive() {
+            $sql = $this->db->prepare("SELECT * FROM secretaries WHERE email = :email AND is_active = true");
+            $sql->bindValue(':email', $this->__get('email'));
+            $sql->execute();
+            //return $sql->setFetchMode(\PDO::FETCH_ASSOC);//retorna um se existe
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);//retorna os dados
+        }
+
         public function selectId() {
             $sql = $this->db->prepare("SELECT * FROM secretaries WHERE id_secretary = :id_secretary AND is_active = true");
             $sql->bindValue(':id_secretary', $this->__get('id_secretary'));
