@@ -1,0 +1,32 @@
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "?date=" . $this->view->prev ?>" class="btn btn-secondary">Anterior</a>
+    <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "?date=" . $this->view->next ?>" class="btn btn-secondary">Próximo</a>
+</div>
+<div class="container table-responsive">
+    <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Dom</th>
+                <th scope="col">Seg</th>
+                <th scope="col">Ter</th>
+                <th scope="col">Qua</th>
+                <th scope="col">Qui</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Sáb</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            $lastSunday = $this->view->date;
+            for($i = 0; $i < 6; $i++) {
+                echo "<tr>";
+                for($j = 0; $j < 7; $j++) {
+                    echo "<td>" . date('d', strtotime($lastSunday)) . "</td>";
+                    $lastSunday = date("Y-m-d", strtotime('+1 day', strtotime($lastSunday)));
+                }
+                echo "</tr>";
+            }
+        ?>
+        </tbody>
+    </table>
+</div>

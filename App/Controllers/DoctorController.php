@@ -5,11 +5,16 @@
 
     use App\Models\Doctor;
     use App\Controllers\SecretaryController;
+    use App\Controllers\CalendarController;
 
     class DoctorController extends Action {
         //Métodos do Doutor
         public function home() {
             if($this->doctorAuth()) {
+                $calendar = new CalendarController();
+                $this->view->date = $calendar->getDate();
+                $this->view->prev = $calendar->getPrev();
+                $this->view->next = $calendar->getNext();
                 $this->render('home', 'layout1');
             }
         }

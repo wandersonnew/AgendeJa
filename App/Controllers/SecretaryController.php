@@ -4,10 +4,15 @@
     use Src\Model\Container;
 
     use App\Models\Secretary;
+    use App\Controllers\CalendarController;
 
     class SecretaryController extends Action {
         public function home() {
             if($this->secretaryAuth()) {
+                $calendar = new CalendarController();
+                $this->view->date = $calendar->getDate();
+                $this->view->prev = $calendar->getPrev();
+                $this->view->next = $calendar->getNext();
                 $this->render('home', 'layout1');
             }
         }
