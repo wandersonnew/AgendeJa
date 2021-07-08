@@ -2,7 +2,24 @@
     <a href="/secretary/logout" class="btn btn-primary">Sair</a>
     <h1>secretary Home</h1>
 
-    <?php include_once PARTIALS . "/calendar.phtml" ?>
+    <?php
+    echo $_SESSION['is_super'];
+    
+    if($_SESSION['is_super'] != NULL) {
+    
+    ?>
+        <select name="id_medclinic" id="Clinics">
+            <?php foreach($this->view->clinics as $key => $clinic) { ?>
+                <option value="<?= $clinic['id_medclinic'] ?>"><?= $clinic['name'] ?></option>
+            <?php } ?>
+        </select>
+    
+    <?php
+    }
+    
+    include_once PARTIALS . "/calendar.phtml"; 
+        
+    ?>
 
 
 </div>

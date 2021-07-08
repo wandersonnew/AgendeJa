@@ -7,5 +7,13 @@
         <a href="/doctor/clinic">Clínicas</a>
     </nav>
 
+    <label for="Clinics">Responsável pela clínica</label>
+    <select name="id_medclinic" id="Clinics">
+        <?php foreach($this->view->clinics as $key => $clinic) { ?>
+            <option value="<?= $clinic['id_medclinic'] ?>"><?= $clinic['name'] ?></option>
+        <?php } ?>
+    </select>
+
     <?php include_once PARTIALS . "/calendar.phtml" ?>
+    
 </div>

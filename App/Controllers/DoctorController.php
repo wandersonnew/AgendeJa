@@ -6,6 +6,7 @@
     use App\Models\Doctor;
     use App\Controllers\SecretaryController;
     use App\Controllers\CalendarController;
+    use App\Controllers\MedicalclinicController;
 
     class DoctorController extends Action {
         //Métodos do Doutor
@@ -15,6 +16,8 @@
                 $this->view->date = $calendar->getDate();
                 $this->view->prev = $calendar->getPrev();
                 $this->view->next = $calendar->getNext();
+                $clinic = new MedicalclinicController();
+                $this->view->clinics = $clinic->selectAllClinics();
                 $this->render('home', 'layout1');
             }
         }

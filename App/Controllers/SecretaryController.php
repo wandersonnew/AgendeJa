@@ -4,6 +4,7 @@
     use Src\Model\Container;
 
     use App\Models\Secretary;
+    use App\Controllers\MedicalclinicController;
     use App\Controllers\CalendarController;
 
     class SecretaryController extends Action {
@@ -13,6 +14,8 @@
                 $this->view->date = $calendar->getDate();
                 $this->view->prev = $calendar->getPrev();
                 $this->view->next = $calendar->getNext();
+                $clinic = new MedicalclinicController();
+                $this->view->clinics = $clinic->selectAllClinics();
                 $this->render('home', 'layout1');
             }
         }
@@ -32,7 +35,8 @@
             ) {
                 session_start();
                 $_SESSION['emailsecretary'] = $secretary->__get('email');
-                $_SESSION['namesecretary'] = $secretary->__get('name');
+                $_SESSION['namesecretary'] = $result[0]['name'];
+                $_SESSION['is_super'] = $result[0]['is_super'];
                 header('Location: /secretary');
             } else {
                 header('Location: /secretary/login?login=false');
