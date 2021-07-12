@@ -26,8 +26,8 @@ CREATE TABLE secretaries (
     password VARCHAR(100) NOT NULL,
     is_super BOOLEAN DEFAULT false,
     is_active BOOLEAN DEFAULT true,
-    id_medclinic int,
-    foreign key (id_medclinic) references medical_clinics(id_medclinic)
+    id_medclinic INT,
+    FOREIGN KEY (id_medclinic) REFERENCES medical_clinics(id_medclinic)
 );
 
 CREATE TABLE doctors (
@@ -36,4 +36,31 @@ CREATE TABLE doctors (
     email VARCHAR(100) NOT NULL,
     tel VARCHAR(15) NOT NULL,
     password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE request_consultation (
+    id_consultation INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    approved BOOLEAN DEFAULT false,
+    id_patient INT,
+    FOREIGN KEY (id_patient) REFERENCES patients(id_patient),
+    id_medclinic INT,
+    FOREIGN KEY (id_medclinic) REFERENCES medical_clinics(id_medclinic),
+    id_secretary INT,
+    FOREIGN KEY (id_secretary) REFERENCES secretaries(id_secretary)
+);
+
+CREATE TABLE calendar (
+    id_calendar INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    year INT(4) NOT NULL,
+    month INT (2) NOT NULL,
+    day INT(2) NOT NULL,
+    schedule VARCHAR(5) NOT NULL
+);
+
+CREATE TABLE schedule (
+    id_schedule INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_consultation INT,
+    FOREIGN KEY (id_consultation) REFERENCES request_consultation(id_consultation),
+    id_calendar INT,
+    FOREIGN KEY (id_calendar) REFERENCES calendar(id_calendar)
 );

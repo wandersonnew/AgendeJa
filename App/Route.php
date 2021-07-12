@@ -55,6 +55,16 @@ class Route extends Bootstrap {
 			'controller' => 'PatientController',
 			'action' => 'torecoverpass'
 		);
+		$routes['request'] = array(
+			'route' => '/patient/request',
+			'controller' => 'PatientController',
+			'action' => 'requestPage'
+		);
+		$routes['requestconsultatio'] = array(
+			'route' => '/patient/request/:id',
+			'controller' => 'PatientController',
+			'action' => 'requestConsultation'
+		);
 
 		//Rotas do doutor
 		$routes['doctor'] = array(
@@ -128,6 +138,12 @@ class Route extends Bootstrap {
 			'route' => '/doctor/delete/clinic/:id',
 			'controller' => 'DoctorController',
 			'action' => 'deleteClinic'
+		);
+		//Rotas de agenda
+		$routes['schedule'] = array(
+			'route' => '/doctor/request/:id',
+			'controller' => 'DoctorController',
+			'action' => 'schedule'
 		);
 
 		//Rotas de secretárias

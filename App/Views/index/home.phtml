@@ -2,9 +2,9 @@
     <?php
         session_start();
 
-        if(isset($_SESSION['email'])) {
+        if(isset($_SESSION['emailpatient'])) {
     ?>
-        <a href="/patient/logout">Sair</a>
+        <a href="/patient/logout" class="btn btn-secondary">Sair</a>
     <?php
         } else {
     ?>
@@ -17,11 +17,11 @@
     <nav>
         <div>
             <a href="/">Início</a>
+            <a href="/patient/request">Solicitar Consulta</a>
         </div>
     </nav>
 
-    <h1>Welcome to my site!</h1>
+    <h1>Agende Já</h1>
 
-    <?php include_once PARTIALS . "/calendar.phtml" ?>
 
 </div>

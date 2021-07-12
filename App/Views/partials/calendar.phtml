@@ -1,10 +1,17 @@
-<div class="btn-group" role="group" aria-label="Basic example">
+<div class="display-6 text-center">
+        <?=
+            //strftime('%A', date('l', strtotime($this->view->day))) 
+            strftime('%B de %Y', strtotime(date("M", strtotime("+1 month", strtotime($this->view->date)))));
+            //date("M", strtotime("+1 month", strtotime($this->view->date)));
+        ?>
+</div>
+<div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
     <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "?date=" . $this->view->prev ?>" class="btn btn-secondary">Anterior</a>
     <a href="<?= parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "?date=" . $this->view->next ?>" class="btn btn-secondary">Próximo</a>
 </div>
 <div class="container table-responsive">
     <table class="table table-bordered align-middle">
-        <thead class="table-dark">
+        <thead class="table-dark text-center display-5">
             <tr>
                 <th scope="col">Dom</th>
                 <th scope="col">Seg</th>
@@ -15,13 +22,29 @@
                 <th scope="col">Sáb</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-align">
         <?php
+            $user = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
             $lastSunday = $this->view->date;
+            $explode = explode("-", $this->view->date);
             for($i = 0; $i < 6; $i++) {
                 echo "<tr>";
                 for($j = 0; $j < 7; $j++) {
-                    echo "<td>" . date('d', strtotime($lastSunday)) . "</td>";
+        ?>
+                    <td height="100px">
+                        <?php
+                            if( ($explode[1] + 1) != date('m', strtotime($lastSunday))) {
+                        ?>
+                                <a href="<?= "/" . $user[1] . "/request/" . date('Y-m-d', strtotime($lastSunday)) ?>" class="text-secondary display-6"><?= date('d', strtotime($lastSunday)) ?></a>
+                        <?php
+                            } else {
+                        ?>
+                                <a href="<?= "/" . $user[1] . "/request/" . date('Y-m-d', strtotime($lastSunday)) ?>" class="text-primary display-6"><?= date('d', strtotime($lastSunday)) ?></a>
+                        <?php
+                            }
+                        ?>
+                    </td>
+        <?php
                     $lastSunday = date("Y-m-d", strtotime('+1 day', strtotime($lastSunday)));
                 }
                 echo "</tr>";

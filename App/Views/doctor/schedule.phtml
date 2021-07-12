@@ -1,0 +1,48 @@
+<div class="container">
+    <h1 class="display-3 text-center">Agenda</h1>
+
+    <div class="display-6 text-center">
+        <?=
+            //strftime('%A', date('l', strtotime($this->view->day))) 
+            strftime('%A, %d de %B de %Y', strtotime($this->view->day));
+        ?>
+    </div>
+
+    <?php
+        $startTime = $this->view->day . " 08:00";
+    ?>    
+
+    <label for="Clinics">Clínica</label>
+    <select name="id_medclinic" id="Clinics">
+        <?php foreach($this->view->clinics as $key => $clinic) { ?>
+        <option value="<?= $clinic['id_medclinic'] ?>"><?= $clinic['name'] ?></option>
+        <?php } ?>
+    </select>
+
+    <table class="table  table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Horários</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php for($i = 0; $i < 15; $i++) { ?>
+            <tr>
+                <th scope="row">
+                    <?= date('H:i', strtotime('+40 minutes', strtotime($startTime))) ?>
+                </th>
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox" class="validate" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Validar</label>
+                    </div>
+                </td>
+            </tr>
+        <?php
+            $startTime = date('Y-m-d H:i', strtotime('+40 minutes', strtotime($startTime)));
+            } 
+        ?>
+    </tbody>
+    </table>
+</div>

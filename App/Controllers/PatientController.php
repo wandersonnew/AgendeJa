@@ -5,6 +5,9 @@
 
     use App\Models\Patient;
 
+    use App\Controllers\CalendarController;
+    use App\Controllers\MedicalclinicController;
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -32,7 +35,7 @@
         }
 
         public function login() {
-            $this->render('login', 'layout1'); 
+            $this->render('login', 'layout1');
         }
 
         public function tologin() {
@@ -45,7 +48,9 @@
                 password_verify($patient->__get('password'), $result[0]['password'])
             ) {
                 session_start();
-                $_SESSION['email'] = $patient->__get('email');
+                $_SESSION['emailpatient'] = $patient->__get('email');
+                $_SESSION['id_patient'] = $result[0]['id_patient'];
+                $_SESSION['namepatient'] = $result[0]['name'];
                 header('Location: /');
             } else {
                 header('Location: /patient/login?login=false');
@@ -69,6 +74,33 @@
 
         public function edit($id) {
             echo $id;
+        }
+
+        public function requestPage() {
+            if($this->patientAuth()) {
+                $calendar = new CalendarController();
+                $this->view->date = $calendar->getDate();
+                $this->view->prev = $calendar->getPrev();
+                $this->view->next = $calendar->getNext();
+                $this->render('requestconsultation', 'layout1');    
+            }
+        }
+
+        public function requestConsultation($day) {
+            if($this->patientAuth()) {
+                $clinic = new MedicalclinicController();
+                $this->view->clinics = $clinic->selectAllClinics();
+                $this->view->day = $day;
+                $this->render('listtime', 'layout1');
+            }
+        }
+
+        public function patientAuth() {
+            session_start();
+            if($_SESSION['emailpatient']) {
+                return true;
+            }
+            header('Location: /patient/login');
         }
     }
 

@@ -124,6 +124,16 @@
             $clinic->delete($id);
         }
 
+        //Gerenciamento da agenda
+        public function schedule($day) {
+            if($this->doctorAuth()) {
+                $clinic = new MedicalclinicController();
+                $this->view->clinics = $clinic->selectAllClinics();
+                $this->view->day = $day;
+                $this->render('schedule', 'layout1');
+            }
+        }
+
     }
 
 /*
