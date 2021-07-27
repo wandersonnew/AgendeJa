@@ -46,15 +46,14 @@ CREATE TABLE request_consultation (
     id_medclinic INT,
     FOREIGN KEY (id_medclinic) REFERENCES medical_clinics(id_medclinic),
     id_secretary INT,
-    FOREIGN KEY (id_secretary) REFERENCES secretaries(id_secretary)
+    FOREIGN KEY (id_secretary) REFERENCES secretaries(id_secretary),
+    date DATETIME NOT NULL
 );
 
-CREATE TABLE calendar (
+/*CREATE TABLE calendar (
     id_calendar INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    year INT(4) NOT NULL,
-    month INT (2) NOT NULL,
-    day INT(2) NOT NULL,
-    schedule VARCHAR(5) NOT NULL
+    date DATETIME NOT NULL
+    valid BOOLEAN DEFAULT false
 );
 
 CREATE TABLE schedule (
@@ -63,4 +62,4 @@ CREATE TABLE schedule (
     FOREIGN KEY (id_consultation) REFERENCES request_consultation(id_consultation),
     id_calendar INT,
     FOREIGN KEY (id_calendar) REFERENCES calendar(id_calendar)
-);
+);*/

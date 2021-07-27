@@ -60,10 +60,15 @@ class Route extends Bootstrap {
 			'controller' => 'PatientController',
 			'action' => 'requestPage'
 		);
-		$routes['requestconsultatio'] = array(
+		$routes['requestconsultation'] = array(
 			'route' => '/patient/request/:id',
 			'controller' => 'PatientController',
 			'action' => 'requestConsultation'
+		);
+		$routes['requestconsultationschedule'] = array(
+			'route' => '/patient/schedule',
+			'controller' => 'PatientController',
+			'action' => 'requestSchedule'
 		);
 
 		//Rotas do doutor

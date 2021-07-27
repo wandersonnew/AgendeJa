@@ -1,5 +1,15 @@
 <div class="container">
     <h1 class="display-2 text-center">Solicitar consulta</h1>
 
-    <?php include_once PARTIALS . "/calendar.phtml" ?>
+    <?php
+        if(isset($_GET)) {
+            if(isset($_GET['this_date']) && $_GET['this_date'] == 'is_invalid') {
+    ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Data inválida. Escolher data de hoje em diante!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+    <?php }} 
+        include_once PARTIALS . "/calendar.phtml" 
+    ?>
 </div>

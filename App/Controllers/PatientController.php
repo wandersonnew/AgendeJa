@@ -7,6 +7,7 @@
 
     use App\Controllers\CalendarController;
     use App\Controllers\MedicalclinicController;
+    use App\Controllers\RequestconsultationController;
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
@@ -87,11 +88,40 @@
         }
 
         public function requestConsultation($day) {
+            $currentDate = explode("-", $day);
             if($this->patientAuth()) {
-                $clinic = new MedicalclinicController();
-                $this->view->clinics = $clinic->selectAllClinics();
-                $this->view->day = $day;
-                $this->render('listtime', 'layout1');
+                if(
+                    $currentDate[0] >= getdate()['year'] &&
+                    $currentDate[1] >= getdate()['mon'] &&
+                    $currentDate[2] >= getdate()['mday']
+                ) {
+                    $clinic = new MedicalclinicController();
+                    $this->view->clinics = $clinic->selectAllClinics();
+                    $this->view->day = $day;
+
+
+                    $request = new RequestconsultationController();
+                    $this->view->requests = $request->selectYear($day);                  
+
+                    $this->render('listtime', 'layout1');
+                } else {
+                    header('Location: /patient/request?this_date=is_invalid');
+                }
+            }
+        }
+
+        public function requestSchedule() {
+            if($this->patientAuth()) {
+                echo "<pre>";
+                print_r($_GET);
+                echo "</pre>";
+                echo "<pre>";
+                print_r($_SESSION);
+                echo "</pre>";
+                $request = new RequestconsultationController();
+                $request->reqConsultation();
+                echo "HHHHHH";
+                
             }
         }
 

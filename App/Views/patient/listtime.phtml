@@ -10,6 +10,8 @@
 
     <?php
         $startTime = $this->view->day . " 08:00";
+        $scheduleCurrent = date("Y-m-d G:i");
+        //getdate()['hours'] . ":0" . getdate()['minutes']
     ?>    
 
     <label for="Clinics">Clínica</label>
@@ -23,17 +25,33 @@
     <thead>
         <tr>
             <th scope="col">Horários</th>
+            <th scope="col">Detalhes</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>
     <tbody>
-        <?php for($i = 0; $i < 15; $i++) { ?>
+        <?php 
+            $cont = 0;
+            $qtd = count($this->view->requests);
+            for($i = 0; $i < 15; $i++) { 
+        ?>
             <tr>
                 <th scope="row">
-                    <?= date('H:i', strtotime('+40 minutes', strtotime($startTime))) ?>
+                    <?= date('H:i', strtotime($startTime)) ?>
+                </th>
+                <th scope="row">
+                    <?php 
+                        if( date('H:i', strtotime($this->view->requests[$cont]['date'])) == date('H:i', strtotime($startTime)) ) {
+                            echo "Horário ocupado";
+                            $cont += 1;
+                        } else {
+                            echo "******************"; 
+                        }
+                        
+                    ?>
                 </th>
                 <td>
-                    <button class="btn btn-primary">Solicitar Consulta</button>
+                    <button class="btn btn-primary" onclick="Click('<?= $this->view->day . ' ' . date('H:i', strtotime($startTime)) ?>')">Solicitar Consulta</button>
                 </td>
             </tr>
         <?php
@@ -43,3 +61,24 @@
     </tbody>
     </table>
 </div>
+
+<?php
+    echo "<pre>";
+    print_r($this->view->requests);
+    echo "</pre>";
+    print_r(getdate());
+    echo "<hr>";
+    echo date('H:i', strtotime($scheduleCurrent));
+    echo "<hr>";
+    echo date('H:i', strtotime($this->view->requests[0]['date']));
+    echo "<hr>";
+    echo count($this->view->requests);
+?>
+
+<script>
+    function Click(schedule) {
+        var clinic = document.getElementById("Clinics").value;
+        
+        window.location.replace("/patient/schedule?id_medclinic=" + clinic + "&schedule=" + schedule);
+    }
+</script>
