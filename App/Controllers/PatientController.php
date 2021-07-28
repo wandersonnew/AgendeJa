@@ -101,26 +101,25 @@
 
 
                     $request = new RequestconsultationController();
-                    $this->view->requests = $request->selectYear($day);                  
+                    if($request->selectYear($day) != NULL) {
+                        $this->view->requests = $request->selectYear($day);
+                    } else {
+                        $this->view->requests = NULL;
+                    }
+                    
 
                     $this->render('listtime', 'layout1');
                 } else {
-                    header('Location: /patient/request?this_date=is_invalid');
+                    header('Location: /patient/request?this_date=is_invalid'); 
                 }
             }
         }
 
         public function requestSchedule() {
             if($this->patientAuth()) {
-                echo "<pre>";
-                print_r($_GET);
-                echo "</pre>";
-                echo "<pre>";
-                print_r($_SESSION);
-                echo "</pre>";
                 $request = new RequestconsultationController();
                 $request->reqConsultation();
-                echo "HHHHHH";
+                header('Location: /patient/request/' . date('Y-m-d', strtotime($_GET['schedule'])) . '?success=true' );
                 
             }
         }
